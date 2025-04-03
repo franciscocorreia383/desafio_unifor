@@ -1,4 +1,4 @@
-package desafio.unifor.dto;
+package desafio.unifor.dto.aluno;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

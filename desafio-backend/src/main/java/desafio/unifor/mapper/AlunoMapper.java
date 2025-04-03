@@ -1,7 +1,7 @@
 package desafio.unifor.mapper;
 
-import desafio.unifor.dto.AlunoCadastroDTO;
-import desafio.unifor.dto.AlunoDTO;
+import desafio.unifor.dto.aluno.AlunoCadastroDTO;
+import desafio.unifor.dto.aluno.AlunoDTO;
 import desafio.unifor.entity.AlunoEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

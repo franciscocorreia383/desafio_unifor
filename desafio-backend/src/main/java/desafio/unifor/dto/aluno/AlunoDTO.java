@@ -1,4 +1,4 @@
-package desafio.unifor.dto;
+package desafio.unifor.dto.aluno;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +10,8 @@ import lombok.extern.jackson.Jacksonized;
 @NoArgsConstructor
 @Jacksonized
 public class AlunoDTO {
+    private Long id;
+
     private String nome;
 
     private String matricula;

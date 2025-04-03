@@ -1,8 +1,8 @@
 package desafio.unifor.service;
 
 
-import desafio.unifor.dto.AlunoCadastroDTO;
-import desafio.unifor.dto.AlunoDTO;
+import desafio.unifor.dto.aluno.AlunoCadastroDTO;
+import desafio.unifor.dto.aluno.AlunoDTO;
 import desafio.unifor.entity.AlunoEntity;
 import desafio.unifor.mapper.AlunoMapper;
 import desafio.unifor.repository.AlunoRepository;
@@ -27,9 +27,9 @@ public class AlunoService {
         List<AlunoDTO> alunos = new ArrayList<>();
 
         alunoRepository.findAll().stream().forEach(aluno -> {
-            alunos.add(alunoMapper.toDTO((AlunoEntity) aluno));
+            alunos.add(alunoMapper.toDTO(aluno));
         });
-
+        System.out.println(alunos);
         return alunos;
     }
 

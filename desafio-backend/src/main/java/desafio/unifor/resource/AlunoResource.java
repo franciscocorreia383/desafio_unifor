@@ -1,7 +1,6 @@
 package desafio.unifor.resource;
 
-import desafio.unifor.dto.AlunoCadastroDTO;
-import desafio.unifor.dto.AlunoDTO;
+import desafio.unifor.dto.aluno.AlunoCadastroDTO;
 import desafio.unifor.service.AlunoService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -9,8 +8,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
-
-import java.util.List;
 
 @Path("/api/v1/alunos")
 @Produces(MediaType.APPLICATION_JSON)
@@ -26,7 +23,7 @@ public class AlunoResource {
         try {
             return Response.ok(alunoService.buscarAlunos()).build();
         } catch (Exception e) {
-            return Response.serverError().build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
 

@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "aluno", schema = "public")
-public class AlunoEntity {
+@Table(name = "curso", schema = "public")
+public class CursoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,15 +14,8 @@ public class AlunoEntity {
 
     private String nome;
 
-    private String matricula;
-
-    @OneToMany(mappedBy = "aluno")
+    @OneToMany(mappedBy = "curso")
     private List<AlunoCursoEntity> alunosCursos;
-
-    @PrePersist
-    public void gerarMatricula() {
-        this.matricula = "MAT" + System.currentTimeMillis();
-    }
 
     public Long getId() {
         return id;
@@ -40,14 +33,6 @@ public class AlunoEntity {
         this.nome = nome;
     }
 
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
     public List<AlunoCursoEntity> getAlunosCursos() {
         return alunosCursos;
     }
@@ -58,10 +43,10 @@ public class AlunoEntity {
 
     @Override
     public String toString() {
-        return "AlunoEntity{" +
+        return "CursoEntity{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", matricula='" + matricula + '\'' +
+                ", alunosCursos=" + alunosCursos +
                 '}';
     }
 }
