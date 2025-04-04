@@ -1,0 +1,18 @@
+.header {
+  text-align: center;
+  color: dimgray;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+.foot{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cancelButton{
+    background-color: rgb(242, 163, 163);
+}

@@ -80,6 +80,7 @@ export class MatriculasComponent {
     });
 
     dialogRef.afterClosed().subscribe((confirmado) => {
+     try {
       if (confirmado) {
         this.cursoServices.deletaMatriculaAlunoCurso(aluno.id, this.curso.id).subscribe(() => {
           this.cursoServices
@@ -87,6 +88,10 @@ export class MatriculasComponent {
           .subscribe((data) => (this.alunos = data));
         });
       }
+     } catch (error) {
+      console.log(error);
+      
+     }
     });
   }
 }

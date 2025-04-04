@@ -5,7 +5,6 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormField } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,7 +15,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
-    MatFormField,
     MatInputModule,
     FormsModule,
   ],
