@@ -1,0 +1,28 @@
+<div class="header">
+    <h1>Matricular Aluno</h1>
+</div>
+
+<mat-form-field appearance="outline">
+  <mat-label>Buscar Aluno</mat-label>
+  <input
+    type="text"
+    matInput
+    [formControl]="alunoCtrl"
+    [matAutocomplete]="auto"
+  />
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    (optionSelected)="onAlunoSelecionado($event)"
+  >
+    <mat-option
+      *ngFor="let aluno of alunosFiltrados | async"
+      [value]="aluno.matricula + ' - ' + aluno.nome"
+    >
+      {{ aluno.matricula }} - {{ aluno.nome }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+<mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-button (click)="confirmarSelecao()" cdkFocusInitial [disabled]="!alunoSelecionadoId">Cadastar</button>
+</mat-dialog-actions>

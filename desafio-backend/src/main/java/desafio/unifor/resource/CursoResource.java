@@ -3,10 +3,7 @@ package desafio.unifor.resource;
 import desafio.unifor.dto.curso.CursoDTO;
 import desafio.unifor.service.CursoService;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -26,7 +23,20 @@ public class CursoResource {
         try {
             return Response.ok(cursoService.listarCursos()).build();
         } catch (Exception e) {
-            System.out.println("Erro ao buscar novo cursos " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GET
+    @Path("/{id}")
+    @Operation(summary = "Buscar Curso Por ID", description = "Retorna curso cadastrado")
+    @APIResponse(responseCode = "200", description = "Curso encontrado com sucesso")
+    public Response buscarCurso(@PathParam("id") long id){
+        try{
+            return Response.ok(cursoService.buscarCursoPorId(id)).build();
+        }catch (NotFoundException e){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }catch (Exception e){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }

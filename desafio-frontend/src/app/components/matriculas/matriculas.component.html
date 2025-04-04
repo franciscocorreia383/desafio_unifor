@@ -1,0 +1,34 @@
+<div class="header">
+    <h1 class="pagetitle">{{curso.nome}}</h1>
+    <button mat-fab color="primary" aria-label="Adicionar Produto" (click)="openDialog(null)">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <div class="table">
+    <table mat-table [dataSource]="alunos" class="mat-elevation-z8">
+      <ng-container matColumnDef="matricula">
+        <th mat-header-cell *matHeaderCellDef>Matricula</th>
+        <td mat-cell *matCellDef="let aluno">{{ aluno.matricula }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let aluno">{{ aluno.nome }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Remover</th>
+        <td mat-cell *matCellDef="let aluno">
+          <button mat-icon-button (click)="removerAluno(aluno)" color="primary">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  
+  

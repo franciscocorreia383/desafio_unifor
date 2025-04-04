@@ -1,2 +1,15 @@
+<mat-toolbar color="primary">
+  <span>Desafio Unifor</span>
+</mat-toolbar>
 
-<router-outlet />
+<mat-sidenav-container class="container">
+  <mat-sidenav mode="side" opened class="navbar">
+    <mat-nav-list class="navitem">
+      <a mat-list-item (click)="navegarPara('/cursos')">Cursos</a>
+      <a mat-list-item (click)="navegarPara('/alunos')">Alunos</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

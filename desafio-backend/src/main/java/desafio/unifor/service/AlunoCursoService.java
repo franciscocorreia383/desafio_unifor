@@ -42,10 +42,14 @@ public class AlunoCursoService {
 
     @Transactional
     public void adicionaAlunoAoCurso(AlunoCursoDTO alunoCursoDTO) {
-        AlunoEntity aluno = alunoRepository.findById(alunoCursoDTO.getCurso().getId());
+        AlunoEntity aluno = alunoRepository.findById(alunoCursoDTO.getAluno ().getId());
         CursoEntity curso = cursoRepository.findById(alunoCursoDTO.getCurso().getId());
         validaAluno(aluno);
         validaCurso(curso);
+
+        if (alunoCursoRepository.validaAlunoCurso(aluno.getId(), curso.getId())) {
+            throw new IllegalStateException("O Aluno ja está cadastrado no curso");
+        }
 
         AlunoCursoEntity matricula = new AlunoCursoEntity();
         matricula.setCurso(curso);
@@ -64,6 +68,16 @@ public class AlunoCursoService {
         });
 
         return alunosCadastrados;
+    }
+
+    @Transactional
+    public void deletaAlunoCurso(long alunoId, long cursoId) {
+        AlunoEntity aluno = alunoRepository.findById(alunoId);
+        CursoEntity curso = cursoRepository.findById(cursoId);
+        validaAluno(aluno);
+        validaCurso(curso);
+
+        alunoCursoRepository.deletarAlunoCurso(aluno.getId(), curso.getId());
     }
 
     private void validaAluno(AlunoEntity aluno) {

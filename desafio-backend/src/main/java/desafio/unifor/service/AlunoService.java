@@ -29,8 +29,17 @@ public class AlunoService {
         alunoRepository.findAll().stream().forEach(aluno -> {
             alunos.add(alunoMapper.toDTO(aluno));
         });
-        System.out.println(alunos);
         return alunos;
+    }
+
+    public AlunoDTO buscarAlunoPorId(long id){
+        AlunoEntity aluno = alunoRepository.findById(id);
+
+        if(aluno == null){
+            throw new NotFoundException("Aluno não cadastrado!");
+        }
+
+        return alunoMapper.toDTO(aluno);
     }
 
     @Transactional

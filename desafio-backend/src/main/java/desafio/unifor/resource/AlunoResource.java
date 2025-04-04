@@ -27,6 +27,20 @@ public class AlunoResource {
         }
     }
 
+    @GET
+    @Path("/{id}")
+    @Operation(summary = "Buscar Aluno Por ID", description = "Retorna aluno cadastrado")
+    @APIResponse(responseCode = "200", description = "Aluno encontrado com sucesso")
+    public Response buscarAlunoPorId(@PathParam("id") long id){
+        try{
+            return Response.ok(alunoService.buscarAlunoPorId(id)).build();
+        }catch (NotFoundException e){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }catch (Exception e){
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @POST
     @Operation(summary = "Cadastrar Aluno", description = "Cadastra um novo aluno")
     @APIResponse(responseCode = "201", description = "Aluno cadastrado com sucesso")
@@ -40,9 +54,10 @@ public class AlunoResource {
     }
 
     @DELETE
+    @Path("/{id}")
     @Operation(summary = "Excluir Aluno", description = "Exclui um aluno por id")
     @APIResponse(responseCode = "200", description = "Aluno excluido com sucesso")
-    public Response excluirAluno(@QueryParam("id") long idAluno) {
+    public Response excluirAluno(@PathParam("id") long idAluno) {
         try {
             alunoService.excluirAluno(idAluno);
             return Response.status(Response.Status.OK).build();
